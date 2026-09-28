@@ -1,0 +1,281 @@
+/* ==========================================================
+   Meridian Hospital Chattogram — Patient Site Stylesheet
+   Theme: Light Green / Teal, glassmorphism + motion accents
+   ========================================================== */
+
+:root{
+  --primary: #1f9d6b;
+  --primary-dark: #157a52;
+  --primary-light: #e6f7ef;
+  --accent: #34d399;
+  --accent-glow: rgba(52, 211, 153, .55);
+  --text-dark: #0f2a22;
+  --text-muted: #5b6b64;
+  --bg: #f4faf7;
+  --card-bg: #ffffff;
+  --border: #dcefe4;
+  --yellow: #f2b705;
+  --orange: #f08c2b;
+  --red: #e5484d;
+  --blue: #3b82f6;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(23, 122, 82, .10);
+  --shadow-lg: 0 20px 50px rgba(23, 122, 82, .18);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; font-family:'Poppins','Segoe UI',sans-serif; color:var(--text-dark);
+  background:var(--bg); line-height:1.6;
+}
+a{text-decoration:none; color:inherit;}
+ul{list-style:none; margin:0; padding:0;}
+img{max-width:100%; display:block;}
+.container{max-width:1200px; margin:0 auto; padding:0 24px;}
+.section{padding:64px 0;}
+.text-center{text-align:center;}
+.muted{color:var(--text-muted);}
+
+h1,h2,h3,h4{margin:0 0 .5em; font-weight:700; color:var(--text-dark);}
+.section-title{font-size:2rem; margin-bottom:8px;}
+.section-sub{color:var(--text-muted); margin-bottom:36px;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 26px; border-radius:999px; border:none; cursor:pointer;
+  font-weight:600; font-size:.95rem; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  color:#fff; box-shadow:0 8px 24px rgba(31,157,107,.35);
+}
+.btn-primary:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 14px 30px var(--accent-glow); }
+.btn-outline{
+  background:transparent; border:2px solid var(--primary); color:var(--primary);
+}
+.btn-outline:hover{ background:var(--primary); color:#fff; }
+.btn-sm{padding:8px 16px; font-size:.85rem; border-radius:10px;}
+.btn-block{width:100%;}
+.btn[disabled]{opacity:.5; cursor:not-allowed; transform:none !important;}
+
+/* magnetic button wrapper target */
+.magnetic{ position:relative; will-change:transform; }
+
+/* ---------- Navbar ---------- */
+.navbar{
+  position:sticky; top:0; z-index:100; background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+}
+.navbar .container{display:flex; align-items:center; justify-content:space-between; padding:12px 24px;}
+.nav-logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.15rem; color:var(--primary-dark);}
+.nav-logo img{height:42px; width:auto; border-radius:8px;}
+.nav-links{display:flex; align-items:center; gap:28px;}
+.nav-links a{font-weight:500; color:var(--text-dark); position:relative; padding:6px 0;}
+.nav-links a.active, .nav-links a:hover{color:var(--primary);}
+.nav-links a.active::after{
+  content:''; position:absolute; left:0; bottom:0; width:100%; height:2px; background:var(--primary);
+}
+.nav-actions{display:flex; align-items:center; gap:14px;}
+.nav-admin-link{font-size:.85rem; color:var(--text-muted); border:1px solid var(--border); padding:8px 14px; border-radius:999px;}
+.nav-admin-link:hover{border-color:var(--primary); color:var(--primary);}
+.menu-toggle{display:none; font-size:1.5rem; background:none; border:none; cursor:pointer; color:var(--primary-dark);}
+.user-chip{display:flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:var(--primary-light); font-weight:600; color:var(--primary-dark); font-size:.9rem;}
+
+@media(max-width:900px){
+  .nav-links{ position:fixed; top:70px; left:0; right:0; background:#fff; flex-direction:column; padding:20px; gap:18px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08); transform:translateY(-140%); transition:transform .3s ease; }
+  .nav-links.open{transform:translateY(0);}
+  .menu-toggle{display:block;}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative; overflow:hidden; padding:70px 0 40px;
+  background:linear-gradient(135deg,#eafcf3 0%, #f4faf7 60%);
+}
+.hero .container{display:flex; align-items:center; gap:40px; flex-wrap:wrap;}
+.hero-text{flex:1 1 420px;}
+.hero-text h1{font-size:2.6rem; line-height:1.2; margin-bottom:18px;}
+.hero-text h1 span{color:var(--primary);}
+.hero-visual{flex:1 1 380px; position:relative; min-height:320px;}
+.glass-card{
+  background:rgba(255,255,255,.55); backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.6); border-radius:var(--radius);
+  box-shadow:var(--shadow-lg); padding:24px;
+}
+.float-icon{
+  position:absolute; background:#fff; border-radius:50%; padding:10px;
+  box-shadow:var(--shadow); animation:float 5s ease-in-out infinite;
+}
+@keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-16px);} }
+.float-icon.i2{animation-delay:1.2s;}
+.float-icon.i3{animation-delay:2.4s;}
+
+/* ---------- Specialty quick links ---------- */
+.specialty-grid{display:flex; gap:28px; flex-wrap:wrap; justify-content:center;}
+.specialty-item{
+  width:120px; text-align:center; cursor:pointer; transition:transform .3s ease;
+}
+.specialty-item:hover{transform:translateY(-8px);}
+.specialty-icon{
+  width:88px; height:88px; margin:0 auto 10px; border-radius:50%; background:var(--primary-light);
+  display:flex; align-items:center; justify-content:center; padding:18px;
+  box-shadow:var(--shadow); transition:box-shadow .3s ease;
+}
+.specialty-item:hover .specialty-icon{box-shadow:0 0 0 6px var(--accent-glow);}
+
+/* ---------- Doctor cards ---------- */
+.doctor-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:26px;}
+.doctor-card{
+  background:var(--card-bg); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);
+  box-shadow:var(--shadow); transition:transform .3s ease, box-shadow .3s ease; cursor:pointer;
+}
+.doctor-card:hover{ transform:translateY(-10px); box-shadow:var(--shadow-lg); }
+.doctor-card .img-wrap{ background:var(--primary-light); aspect-ratio:1/1; overflow:hidden; position:relative;}
+.doctor-card .img-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.doctor-card:hover .img-wrap img{transform:scale(1.06);}
+.doctor-card .info{padding:16px;}
+.availability{display:flex; align-items:center; gap:6px; font-size:.8rem; margin-bottom:6px;}
+.dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+.dot.green{background:#22c55e; box-shadow:0 0 8px #22c55e;}
+.dot.gray{background:#9ca3af;}
+.doctor-card h4{margin:0 0 2px; font-size:1rem;}
+.doctor-card .spec{color:var(--text-muted); font-size:.85rem;}
+
+/* skeleton shimmer */
+.skeleton{ position:relative; overflow:hidden; background:#e7f4ee; }
+.skeleton::after{
+  content:''; position:absolute; inset:0; transform:translateX(-100%);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+  animation:shimmer 1.4s infinite;
+}
+@keyframes shimmer{100%{transform:translateX(100%);}}
+
+/* ---------- CTA banner ---------- */
+.cta-banner{
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius:24px; padding:48px; display:flex; align-items:center; justify-content:space-between;
+  color:#fff; flex-wrap:wrap; gap:20px; position:relative; overflow:hidden;
+}
+.cta-banner h2{color:#fff; margin-bottom:6px;}
+.cta-banner .btn-primary{background:#fff; color:var(--primary-dark); box-shadow:none;}
+.cta-banner .btn-primary:hover{box-shadow:0 10px 24px rgba(0,0,0,.2);}
+
+/* ---------- Footer ---------- */
+footer{background:#0f2a22; color:#dff3ea; padding:56px 0 20px; margin-top:60px;}
+footer h4{color:#fff;}
+.footer-grid{display:grid; grid-template-columns:2fr 1fr 1.4fr; gap:32px;}
+footer a:hover{color:var(--accent);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12); margin-top:36px; padding-top:18px; text-align:center; font-size:.85rem; color:#9fc8b8;}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ---------- Filters / All doctors page ---------- */
+.doctors-layout{display:flex; gap:30px; align-items:flex-start;}
+.filter-sidebar{
+  width:230px; flex-shrink:0; background:var(--card-bg); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px; position:sticky; top:90px;
+}
+.filter-sidebar h4{margin-bottom:14px;}
+.filter-sidebar label{display:flex; align-items:center; gap:8px; padding:6px 0; cursor:pointer; font-size:.92rem;}
+.filter-sidebar input[type="checkbox"]{margin-left:auto; flex-shrink:0; accent-color:var(--primary);}
+.doctor-search{display:flex; gap:10px; margin-bottom:22px;}
+.doctor-search .form-control{flex:1; min-width:0;}
+@media(max-width:520px){.doctor-search{flex-direction:column;}}
+@media(max-width:800px){.doctors-layout{flex-direction:column;} .filter-sidebar{width:100%; position:static;}}
+
+/* ---------- Doctor profile ---------- */
+.profile-grid{display:flex; gap:36px; flex-wrap:wrap;}
+.profile-photo{width:260px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+.profile-info{flex:1 1 380px;}
+.badge-verified{display:inline-flex; align-items:center; gap:6px; background:var(--primary-light); color:var(--primary-dark); padding:4px 12px; border-radius:999px; font-size:.8rem; font-weight:600;}
+.fee-tag{font-weight:700; color:var(--primary-dark);}
+
+.date-tabs{display:flex; gap:10px; overflow-x:auto; padding:6px 0 16px;}
+.date-tab{
+  min-width:64px; text-align:center; padding:12px 8px; border-radius:14px; border:1px solid var(--border);
+  cursor:pointer; background:#fff; transition:all .25s ease; flex-shrink:0;
+}
+.date-tab .d{font-size:.75rem; color:var(--text-muted);}
+.date-tab .n{font-size:1.1rem; font-weight:700;}
+.date-tab.active{background:var(--primary); color:#fff; box-shadow:0 8px 20px var(--accent-glow); transform:translateY(-4px);}
+.date-tab.active .d{color:#e7fff2;}
+
+.slot-grid{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 24px;}
+.slot{
+  padding:10px 18px; border-radius:12px; border:1px solid var(--border); background:#fff; cursor:pointer;
+  font-size:.9rem; transition:all .2s ease;
+}
+.slot:hover{border-color:var(--primary);}
+.slot.selected{ background:var(--primary); color:#fff; transform:scale(1.08); box-shadow:0 0 0 4px var(--accent-glow); }
+.slot.unavailable{ opacity:.4; text-decoration:line-through; cursor:not-allowed; background:#f1f5f3; }
+
+/* ---------- Auth modal / pages ---------- */
+.auth-wrap{ display:flex; align-items:center; justify-content:center; min-height:70vh; padding:40px 16px;}
+.auth-card{
+  width:100%; max-width:420px; background:rgba(255,255,255,.7); backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.6); border-radius:20px; box-shadow:var(--shadow-lg); padding:36px;
+}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block; margin-bottom:6px; font-weight:600; font-size:.9rem;}
+.form-control{
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--border);
+  font-size:.95rem; background:#fff; transition:border .2s ease, box-shadow .2s ease;
+}
+.form-control:focus{outline:none; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-light);}
+.form-row{display:flex; gap:14px;}
+.form-row .form-group{flex:1;}
+.alert{padding:12px 16px; border-radius:10px; margin-bottom:18px; font-size:.9rem;}
+.alert-success{background:#e7f9ef; color:#0f7a45; border:1px solid #b8ecd0;}
+.alert-error{background:#fdeceb; color:#c0392b; border:1px solid #f5c6c2;}
+
+/* ---------- Stepper (booking flow) ---------- */
+.stepper{display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:30px; max-width:640px; margin-left:auto; margin-right:auto;}
+.step{display:flex; flex-direction:column; align-items:center; flex:1; position:relative;}
+.step .circle{
+  width:34px; height:34px; border-radius:50%; background:#e7f4ee; color:var(--text-muted);
+  display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:6px; transition:all .3s ease; z-index:1;
+}
+.step.active .circle, .step.done .circle{background:var(--primary); color:#fff; box-shadow:0 0 0 6px var(--accent-glow);}
+.step .label{font-size:.75rem; color:var(--text-muted);}
+.step::after{
+  content:''; position:absolute; top:17px; left:50%; width:100%; height:2px; background:#e7f4ee; z-index:0;
+}
+.step:last-child::after{display:none;}
+.step.done::after{background:var(--primary);}
+
+/* ---------- Success screen ---------- */
+.success-wrap{text-align:center; padding:60px 20px;}
+.checkmark-circle{
+  width:110px; height:110px; border-radius:50%; background:var(--primary-light); margin:0 auto 24px;
+  display:flex; align-items:center; justify-content:center; animation:pop .5s ease;
+}
+.checkmark-circle svg{width:56px; height:56px;}
+.checkmark-circle path{ stroke:var(--primary); stroke-width:3; fill:none; stroke-dasharray:48; stroke-dashoffset:48; animation:draw .6s ease forwards .2s;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes pop{0%{transform:scale(.6); opacity:0;} 100%{transform:scale(1); opacity:1;}}
+
+/* ---------- Table (My Appointments) ---------- */
+.table-wrap{overflow-x:auto; background:#fff; border-radius:var(--radius); border:1px solid var(--border);}
+table{width:100%; border-collapse:collapse; font-size:.9rem;}
+th, td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--border);}
+th{background:var(--primary-light); color:var(--primary-dark); font-weight:700;}
+tr:last-child td{border-bottom:none;}
+
+.status-badge{padding:4px 12px; border-radius:999px; font-size:.75rem; font-weight:700;}
+.badge-green{background:#e6f9ee; color:#0f9d58;}
+.badge-yellow{background:#fff8e1; color:#b8860b;}
+.badge-orange{background:#fff1e0; color:#c76a0c;}
+.badge-red{background:#fdeceb; color:#c0392b;}
+.badge-blue{background:#eaf2ff; color:#2255c4;}
+.badge-gray{background:#eef1f0; color:#5b6b64;}
+
+[data-aos]{opacity:0; transition-property:opacity, transform;}
+[data-aos].aos-animate{opacity:1;}
+[data-aos="fade-up"]{transform:translateY(30px);}
+[data-aos="fade-up"].aos-animate{transform:translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important;}
+}
